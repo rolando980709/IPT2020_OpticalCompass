@@ -1,0 +1,31 @@
+pelados haci% --------Inputs---------
+year = 2020;
+month = 6;
+day = 21;
+hour = 12;
+mins = 0;
+
+lat = -30;
+lon = 0;
+GMTOffset = 0;
+
+% alternative to select lat, lon, GMTOffset
+% [lat,lon,GMTOffset] = MapSelectCoords();
+
+tilt = 30; % towards equator is positive 
+pnlAzim = 30; % zero is due north, rotating clockwise
+
+% ------------------------
+
+% To test function used within the function polarPlotSolarPath
+% [elev,azim,decl,HRA] = calcSolarPath(year,month,day,hour,mins,GMTOffset,lat,lon);
+
+% To plot the solar path in polar axes
+% (This will return values needed for the function horizonRF3DPlot)
+figure
+[azimLArr, elevLArr, azimP, elevP] = ...
+    polarPlotSolarPath(year,month,day,hour,mins,GMTOffset,lat,lon);
+
+% To plot the horizon reference frame 
+figure
+horizonRF3DPlot(azimLArr,elevLArr,azimP,elevP,tilt,pnlAzim);
